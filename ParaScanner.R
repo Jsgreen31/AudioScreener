@@ -1,5 +1,5 @@
 
-### Script to detect and isolate corrupted .wav files
+### Script to detect and isolate corrupted .wav files in parallel
 
 # J. Green 16/10/2024
 
