@@ -339,9 +339,9 @@ cat("Specificity:", specificity, "\n")
 ############### Step 3: Classify Data set
 
 # The raw 5 minute .wav files take very long to run (approximately 8 mins processing time/5-min of audio)
-# This is prohibitive for large data sets due to long processing times. However, hardRain is efficient at 
-# classifying shorter clips (1 min). Segmenting the dataset into 1-min clips significantly reduces processing time
-# (5 seconds/5 mins of audio). While classifying the data set, if at least one segment of a recording is classified 
+# This is prohibitive for large data sets. However, hardRain is efficient at classifying shorter clips (1 min).
+# Segmenting the dataset into 1-min clips significantly reduces processing time (5 seconds/5 mins of audio). 
+# While classifying the data set, if at least one segment of a recording is classified 
 # as rain, the remaining segments of that recording will also be excluded as rain. 
 #
 
@@ -450,6 +450,7 @@ trBR <- as.matrix(trBR)
 num_cores <- detectCores() - 2 # Leave a few cores free
 
 # Set up the cluster
+# I used DoSNOW/foreach here as it was easier to implement a progress bar while processing in parallel.
 cl <- makeCluster(num_cores, type = "SOCK")
 registerDoSNOW(cl)
 
